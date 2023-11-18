@@ -23,3 +23,14 @@ train_ds = image_dataset_from_directory(
     color_mode="rgb",
     seed=200,
     )
+
+val_ds = image_dataset_from_directory(
+    val_path,
+    label_mode="categorical",
+    image_size=(100,100),
+    color_mode="rgb",
+    shuffle = True,
+    seed=200,
+    )
+#applying only rescale to val data idk i need this.
+#val_ds = val_ds.map(lambda x, y: (layers.Rescaling(1.0 / 255)(x), y))
