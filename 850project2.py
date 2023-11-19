@@ -32,5 +32,64 @@ val_ds = image_dataset_from_directory(
     shuffle = True,
     seed=200,
     )
-#applying only rescale to val data idk i need this.
+#applying only rescale to val data idk if need this.
 #val_ds = val_ds.map(lambda x, y: (layers.Rescaling(1.0 / 255)(x), y))
+
+#layers stuff
+model = Sequential([
+    layers.Rescaling(1.0/255),
+    layers.RandomRotation(0.15),
+    layers.RandomZoom(0.15),
+    layers.RandomFlip("horizontal"),
+    
+    
+    layers.Conv2D(4, 4, activation= 'relu'), 
+    layers.MaxPooling2D(),
+
+    layers.Conv2D(8, 4, activation= 'relu'),
+    layers.MaxPooling2D(),
+    
+    layers.Conv2D(16, 2, activation= 'relu'),
+    layers.Conv2D(16, 2, activation= 'relu'),
+    layers.MaxPooling2D(),
+    
+    
+    layers.Flatten(),  
+    layers.Dropout(0.5),
+    layers.Dense(4, activation='softmax'),
+])
+
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+m = model.fit(
+    train_ds,
+    validation_data= val_ds,
+    epochs = 12) 
+
+acc = m.history['accuracy']
+val_acc = m.history['val_accuracy']
+loss = m.history['loss']
+val_loss = m.history['val_loss']
+
+import matplotlib.pyplot as plt
+
+epochs = range(1, len(acc) + 1)
+
+plt.plot(epochs, acc, label='Training acc')
+plt.plot(epochs, val_acc, 'r', label='Validation acc')
+plt.title('Training and validation accuracy')
+plt.legend()
+
+plt.figure()
+
+plt.plot(epochs, loss, label='Training loss')
+plt.plot(epochs, val_loss, 'r', label='Validation loss')
+plt.title('Training and validation loss')
+plt.legend()
+
+plt.show()
+
+
+#goal is to make val and training stuff close together
