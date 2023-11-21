@@ -42,21 +42,21 @@ model = Sequential([
     layers.RandomFlip("horizontal"),
     
     
-    layers.Conv2D(8, 4, activation= 'relu'), 
+    layers.Conv2D(32, 8, activation= 'relu'), 
     layers.MaxPooling2D(),
-    layers.LeakyReLU(alpha = 0.1),
+    layers.LeakyReLU(alpha = 0.2),
 
-    layers.Conv2D(16, 4, activation= 'relu'),
+    layers.Conv2D(64, 8, activation= 'relu'),
     layers.MaxPooling2D(),
-    layers.LeakyReLU(alpha = 0.1),
+    layers.LeakyReLU(alpha = 0.2),
     
-    layers.Conv2D(32, 2, activation= 'relu'),
+    layers.Conv2D(128, 4, activation= 'relu'),
     layers.MaxPooling2D(),
-    layers.LeakyReLU(alpha = 0.1),
+    layers.LeakyReLU(alpha = 0.2),
     
     layers.Flatten(), 
     layers.Dense (64),
-    layers.LeakyReLU(alpha = 0.1),
+    layers.LeakyReLU(alpha = 0.2),
     layers.Dropout(0.5),
     layers.Dense(4, activation='softmax'),
     
@@ -69,7 +69,7 @@ model.compile(optimizer='adam',
 m = model.fit(
     train_ds,
     validation_data= val_ds,
-    epochs = 100) 
+    epochs = 30) 
 
 model.save("model")
 
@@ -97,4 +97,3 @@ plt.legend()
 plt.show()
 
 
-#goal is to make vals and training stuff close together
