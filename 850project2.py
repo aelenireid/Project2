@@ -42,15 +42,15 @@ model = Sequential([
     layers.RandomFlip("horizontal"),
     
     
-    layers.Conv2D(32, 8, activation= 'relu'), 
+    layers.Conv2D(8, 4, activation= 'relu'), 
     layers.MaxPooling2D(),
     layers.LeakyReLU(alpha = 0.1),
 
-    layers.Conv2D(64, 8, activation= 'relu'),
+    layers.Conv2D(16, 4, activation= 'relu'),
     layers.MaxPooling2D(),
     layers.LeakyReLU(alpha = 0.1),
     
-    layers.Conv2D(128, 4, activation= 'relu'),
+    layers.Conv2D(32, 2, activation= 'relu'),
     layers.MaxPooling2D(),
     layers.LeakyReLU(alpha = 0.1),
     
@@ -69,7 +69,7 @@ model.compile(optimizer='adam',
 m = model.fit(
     train_ds,
     validation_data= val_ds,
-    epochs = 50) 
+    epochs = 100) 
 
 model.save("model")
 
