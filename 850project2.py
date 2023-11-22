@@ -36,6 +36,7 @@ val_ds = image_dataset_from_directory(
 
 #layers 
 model = Sequential([
+    
     layers.Rescaling(1.0/255),
     layers.RandomRotation(0.15),
     layers.RandomZoom(0.15),
@@ -69,7 +70,7 @@ model.compile(optimizer='adam',
 m = model.fit(
     train_ds,
     validation_data= val_ds,
-    epochs = 30) 
+    epochs = 150) 
 
 model.save("model")
 
