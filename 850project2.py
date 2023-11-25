@@ -106,4 +106,3 @@ plt.show()
 
 model.save("model_A")
 
-#
