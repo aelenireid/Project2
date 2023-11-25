@@ -38,6 +38,34 @@ filterwarnings("ignore")
 fig, ax = plt.subplots()
 
 
+#FOR LARGE 
+fig, ax = plt.subplots()
+
+
+tf_img = io.read_file(path1)
+tf_img = image.decode_png(tf_img, channels=3)
+fig = plt.imshow(tf_img)
+plt.title("True Crack Class: Large")
+
+#{'Large': 0, 'Medium': 1, 'None': 2, 'Small': 3}
+
+value = pre_img2[0,0]*100
+
+ax.text(1150, 1450, f"Large: {value: .2f}%", c = 'pink')
+
+
+value = pre_img2[0,1]*100
+
+ax.text(1150, 1550, f"Medium: {value: .2f}%", c = 'pink')
+
+value = pre_img2[0,2]*100
+
+ax.text(1150, 1650, f"None: {value: .2f}%", c = 'pink')
+
+value = pre_img2[0,3]*100
+
+ax.text(1150, 1750, f"Small: {value: .2f}%", c = 'pink')
+
 #FOR MED
 tf_img = io.read_file(path1)
 tf_img = image.decode_png(tf_img, channels=3)
@@ -69,34 +97,6 @@ ax.axis('off')
 # Show the plot
 plt.show()
    
-
-#FOR LARGE 
-fig, ax = plt.subplots()
-
-
-tf_img = io.read_file(path1)
-tf_img = image.decode_png(tf_img, channels=3)
-fig = plt.imshow(tf_img)
-plt.title("True Crack Class: Large")
-
-#{'Large': 0, 'Medium': 1, 'None': 2, 'Small': 3}
-
-value = pre_img2[0,0]*100
-
-ax.text(1150, 1450, f"Large: {value: .2f}%", c = 'pink')
-
-
-value = pre_img2[0,1]*100
-
-ax.text(1150, 1550, f"Medium: {value: .2f}%", c = 'pink')
-
-value = pre_img2[0,2]*100
-
-ax.text(1150, 1650, f"None: {value: .2f}%", c = 'pink')
-
-value = pre_img2[0,3]*100
-
-ax.text(1150, 1750, f"Small: {value: .2f}%", c = 'pink')
 
 # Turn off axes for a cleaner display
 ax.axis('off')
