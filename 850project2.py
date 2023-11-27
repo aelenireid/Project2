@@ -45,7 +45,7 @@ val_generator = val_datagen.flow_from_directory(
         shuffle = True
 )
 
-#layers 
+# my layers 
 model = Sequential([
 
 
